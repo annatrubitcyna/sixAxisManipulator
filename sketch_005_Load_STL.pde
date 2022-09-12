@@ -92,7 +92,7 @@ void draw()
   popMatrix();  
   
   pushMatrix();
-  print_text();
+  printText();
   popMatrix();
 }
 

@@ -28,10 +28,38 @@ float[][] transpose(float[][] matrix){
   int v=matrix.length;
   int h=matrix[0].length;
   float[][] matrixT=new float[h][v];
-  for(int i=0; i<matrix.length; i++){
-    for(int j=0; j<matrix[0].length; j++){
+  for(int i=0; i<v; i++){
+    for(int j=0; j<h; j++){
       matrixT[j][i]=matrix[i][j];
     }
   }
   return matrixT;
+}
+
+float[][] subM(float[][] first, float[][] second){
+  int n=first.length;
+  int k=first[0].length;
+  float[][] ans= new float[n][k];
+  
+  for (int i = 0; i < n; i++){
+    for (int j = 0; j < k; j++){
+      ans[i][j]=first[i][j]-second[i][j];
+    }
+  }
+  
+  return ans;
+}
+
+float[][] dotL(float[][] first, float lambda){
+  int n=first.length;
+  int k=first[0].length;
+  float[][] ans= new float[n][k];
+  
+  for (int i = 0; i < n; i++){
+    for (int j = 0; j < k; j++){
+      ans[i][j]=first[i][j]*lambda;
+    }
+  }
+  
+  return ans;
 }

@@ -29,8 +29,12 @@ private float t4;
 private float t5;
 private float t6;
 
-float[] angles={0, PI/2, -PI/2, 0, 0, 0};
-boolean changeAngles=true;
+float[] angles={0, 0, 0, 0, 0, 0};
+boolean changeAngles=false;
+boolean first=true;
+
+String exeption="OK";
+float[][] R;
 
 //class Coord{
 //  float x, y, z;
@@ -159,7 +163,7 @@ void drawOrientation(float x, float y, float z, float[][]T, int len){
   line(x, y, z, x+newZ[0][0], y+newZ[1][0], z+newZ[2][0]);
 }
 
-void drawOrientations(float x1, float y1, float z1, float x2, float y2, float z2, float x3, float y3, float z3, float x, float y, float z,float[][][]T_a){
+void drawOrientations(float x1, float y1, float z1, float x2, float y2, float z2, float x3, float y3, float z3, float x, float y, float z,float[][][]Ta){
   
   stroke(255, 0, 0);
   line(0, 0, 0, 200, 0, 0);
@@ -173,15 +177,15 @@ void drawOrientations(float x1, float y1, float z1, float x2, float y2, float z2
   //textSize(40);
   //text("x", 180, 30);
   
-  drawOrientation(x1, y1, z1, T_a[0], 5);
-  drawOrientation(x2, y2, z2, T_a[1], 5);
-  drawOrientation(x3, y3, z3, T_a[3], 5);
-  drawOrientation(x, y, z, T_a[5], 10);
+  drawOrientation(x1, y1, z1, Ta[0], 5);
+  drawOrientation(x2, y2, z2, Ta[1], 5);
+  drawOrientation(x3, y3, z3, Ta[3], 5);
+  drawOrientation(x, y, z, Ta[5], 10);
 }
 
 float[] threeAxisBackwardTransfer(float x, float y, float z)
 {
-  float[] a = {0, 0, l[2], l[3]};  // массив значений a_i
+  float[] a = {0, 0, l[2], l[3]};  // массив значений a_i //<>//
   float[] d = {0, l[1], 0, 0};  // массив значений d_i
   float r1 = sqrt(sq(x)+sq(y));
   float r2 = z - d[1];
@@ -195,13 +199,20 @@ float[] threeAxisBackwardTransfer(float x, float y, float z)
       t2 = psi2 + psi1;
       float psi3 = acos((sq(a[2]) + sq(a[3]) - sq(r3)) / (2 * a[2] * a[3]));
       t3 = -(PI - psi3);
+      exeption="OK";
+    }
+    else{
+      exeption="threeAxisBackwardTransferEx";
     }
   }
-  
-  if(abs(angles[1]-t2)>abs(angles[1]+t2)){
-    t2=-t2;
-    t3=PI/2+t2-t3;
+  else{
+    exeption="threeAxisBackwardTransferEx";
   }
+  
+  //if(abs(angles[1]-t2)>abs(angles[1]+t2)){
+  //t2=-t2;
+  //t3=PI/2+t2-t3;
+  //}
   float[] angles={t1, t2, t3};
   return angles;
 }
@@ -209,46 +220,23 @@ float[] threeAxisBackwardTransfer(float x, float y, float z)
 float[] orientationBackwardsTransfer(float t1, float t2, float t3, float[][] R)
 {
                     
-  float[][] T3 = getT3(t1, t2, t3)[2];
-  float[][] R3T =transpose(getR(T3));
+  float[][] T3 = getT3(t1, t2, t3)[2]; //<>//
+  float[][] R3= getR(T3);
+  float[][] R3T =transpose(R3);
   float[][] R36= dot(R3T, R);
   //print("R ", R[2][2], "\n");
   //print("R3*R36 ", dot(R3, R36)[2][2], "\n");
-  if(R36[2][2]==1){
-    t5=0;
-    t6=0; //выбираем t6 любым
-    t4=atan2(R36[1][0], R36[0][0])-t6;
-  }
-  else if (R36[2][2]==-1){
-    t5=0;
-    t6=0; //выбираем t6 любым
-    t4=atan2(-R36[0][1], -R36[0][0])+t6;
-  }
-  else{
-  int sign=1; //1 или -1
-  t4=atan2(sign*sqrt(1-sq(R36[2][2])), R36[2][2]);
-  t5=atan2(sign*R36[1][2], sign*R36[0][2]);
-  t6=atan2(sign*R36[2][1], -sign*R36[2][0]);
-  
-  //t4=acos(R[2][2]);
-  //t5=atan2(R[1][2], R[0][2]);
-  //t6=atan2(R[2][1], -R[2][0]);
-  }
-  float[] angles={t4, t5, t6};
-  return angles;
-}
-
-float round(float a, int n){
-  return (round(a*pow(10, n)))/pow(10, n);
+  return findEulerAngles(R36);
 }
 
 float[] backwardTransfer(float x, float y, float z, float[][] R)
 {
-  //косячная запись p40=p60-d6*R60*[0; 0;1]
-  //тк косячно работают матрицы
-  float[][] d6m={{0}, {0}, {l[4]}};
-  float[][] p46=dot(R, d6m);
-  float[][] p4={{x-p46[0][0]}, {y-p46[1][0]}, {z-p46[2][0]}};
+  //+- не косячная запись p40=p60-d6*R60*[0; 0;1] //<>//
+  float[] d = {0, l[1], 0, 0, l[3], 0, l[4]};
+  float[][] k={{0}, {0}, {1}};
+  float[][] p46=dotL(dot(R, k), d[6]);
+  float[][] p60={{x}, {y}, {z}};
+  float[][] p4=subM(p60, p46);
   
   float[] threeAngles = threeAxisBackwardTransfer(p4[0][0], p4[1][0], p4[2][0]); //получаем первые 3 угла из геометрии
   t1=round(threeAngles[0], 5); t2=round(threeAngles[1], 5); t3=round(threeAngles[2], 5); //инициализируем
@@ -261,7 +249,31 @@ float[] backwardTransfer(float x, float y, float z, float[][] R)
   return newAngles;
 }
 
-
+float[] findEulerAngles(float[][] R){
+  if(R[2][2]==1){ //<>//
+    t5=0;
+    t6=0; //выбираем t6 любым
+    t4=atan2(R[1][0], R[0][0])-t6;
+  }
+  else if (R[2][2]==-1){
+    t5=0;
+    t6=0; //выбираем t6 любым
+    t4=atan2(-R[0][1], -R[0][0])+t6;
+  }
+  else{
+  int sign=1; //1 или -1
+  t5=atan2(sign*sqrt(1-sq(R[2][2])), R[2][2]);
+  t4=atan2(sign*R[1][2], sign*R[0][2]);
+  t6=atan2(sign*R[2][1], -sign*R[2][0]);
+  
+  //t4=acos(R[2][2]);
+  //t5=atan2(R[1][2], R[0][2]);
+  //t6=atan2(R[2][1], -R[2][0]);
+  }
+  float[] angles={t4, t5, t6};
+  return angles;
+  
+}
 
 void drawManipulator()
 {
@@ -270,10 +282,34 @@ void drawManipulator()
   strokeWeight(7);
   strokeCap(ROUND);
   
-  float[][][] Ta=getT(angles[0], angles[1], angles[2], angles[3], angles[4], angles[5]);
+  //stroke(255, 255, 255, 50);
+  //sphereDetail(10);
+  //sphere(l[1]+l[2]+l[3]);
+  //sphere(l[1]+l[2]+l[3]+l[4]);
   
+  if (first){
+    angles[0]=0;
+    angles[1]=PI/2;
+    angles[2]=-PI/2;
+    angles[3]=0;
+    angles[4]=PI;
+    angles[5]=0;
+    
+    float[][][] Ta=getT(angles[0], angles[1], angles[2], angles[3], angles[4], angles[5]);
+    R=getR(Ta[5]);
+    float[][] coords=straightTransferCoord(angles[0], angles[1], angles[2], Ta[5]); 
+    
+    x=coords[3][0];
+    y=coords[3][1];
+    z=coords[3][2];
+    angles=backwardTransfer(x, y, z, R);
+    changeAngles=true;
+    first=false;
+  }
+  
+  float[][][] Ta=getT(angles[0], angles[1], angles[2], angles[3], angles[4], angles[5]);
   if (!changeAngles) {
-    float[][] R=getR(Ta[5]);
+    R=getR(Ta[5]);
     angles=backwardTransfer(x, y, z, R);
     changeAngles=true;
   }
@@ -282,7 +318,7 @@ void drawManipulator()
   
   //это сделано для удобства функции line, можно работать с coords
   x1=coords[0][0];
-  y1=coords[0][1];
+  y1=coords[0][1]; 
   z1=coords[0][2];
   
   x2=coords[1][0];
@@ -297,6 +333,7 @@ void drawManipulator()
   y=coords[3][1];
   z=coords[3][2];
   
+  stroke(255, 0, 0);
   line(0, 0, 0, x1, y1, z1);
   stroke(255, 255, 0);
   line(x1, y1, z1, x2, y2, z2);
