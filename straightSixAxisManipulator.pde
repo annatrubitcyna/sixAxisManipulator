@@ -1,4 +1,4 @@
-float[][] straightTransferCoord(float t1, float t2, float t3, float[][] T) //<>//
+float[][] straightTransferCoord(float t1, float t2, float t3, float[][] T)
 {
   x1 = 0;
   y1 = 0;

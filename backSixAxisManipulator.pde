@@ -12,31 +12,31 @@ float[] newThreeAxisBackwardTransfer(float x, float y, float z)
   //t1 = atan2(y, x);
 
   if (abs((sq(a[2]) + sq(r3) - sq(a[3])) / (2 * a[2] * r3))<=1) {
-    float psi1 = acos((sq(a[2]) + sq(r3) - sq(a[3])) / (2 * a[2] * r3));
+    float psi1 = an(acos((sq(a[2]) + sq(r3) - sq(a[3])) / (2 * a[2] * r3)));
     float psi2 = atan2(r2, r1);
     if (abs((sq(a[2]) + sq(a[3]) - sq(r3)) / (2 * a[2] * a[3]))<=1) {
       //t2 = psi2 + psi1;
-      float psi3 = acos((sq(a[2]) + sq(a[3]) - sq(r3)) / (2 * a[2] * a[3]));
+      float psi3 = an(acos((sq(a[2]) + sq(a[3]) - sq(r3)) / (2 * a[2] * a[3])));
       //t3 = -(PI - psi3);
       exeption="OK";
       
       
       float t11=atan2(y, x);
-      float t12;
-      if(t11>0) t12=t11-PI;
-      else t12=t11+PI;
+      float t12=an(t11+PI);
+      //if(t11>0) t12=t11-PI;
+      //else t12=t11+PI;
       //float t12=(atan2(y, x)+PI)%(2*PI);
       
-      float t211=(psi2+psi1)%(2*PI);
-      float t212=(psi2-psi1)%(2*PI);
+      float t211=an(psi2+psi1);
+      float t212=an(psi2-psi1);
       
-      float t221=(PI-(psi2+psi1))%(2*PI);
-      float t222=(PI-(psi2-psi1))%(2*PI);
+      float t221=an(PI-(psi2+psi1));
+      float t222=an(PI-(psi2-psi1));
       
       
       
-      float t31=psi3-PI;
-      float t32=PI-psi3;
+      float t31=an(psi3-PI);
+      float t32=an(PI-psi3);
       
       if(firstCloserToThird(t11, t12, angles[0])){
         t1=t11;
@@ -61,17 +61,6 @@ float[] newThreeAxisBackwardTransfer(float x, float y, float z)
         }
       }
       
-      if(abs(t1-PI)<0.01){
-        print("!!!!");
-      }
-      
-      
-      //чтоб не было резкого перехода
-      //if(t1-PI/2>0.001 | (-PI/2-t1)>0.001){
-      //  t1= atan(y/x);
-      //  t2=PI-(psi2-psi1);
-      //  //t3=-t3;
-      //}
     }
     else{
       exeption="threeAxisBackwardTransferEx";
@@ -151,12 +140,12 @@ float[] findEulerAngles(float[][] R){
   if(R[2][2]==1){
     t5=0;
     t6=0; //выбираем t6 любым
-    t4=atan2(R[1][0], R[0][0])-t6;
+    t4=an(atan2(R[1][0], R[0][0])-t6);
   }
   else if (R[2][2]==-1){
     t5=0;
     t6=0; //выбираем t6 любым
-    t4=atan2(-R[0][1], -R[0][0])+t6;
+    t4=an(atan2(-R[0][1], -R[0][0])+t6);
   }
   else{
   int sign=1; //1 или -1

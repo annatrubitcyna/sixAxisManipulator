@@ -342,7 +342,7 @@
   
 //  x=coords[3][0];
 //  y=coords[3][1];
-//  z=coords[3][2]; //<>//
+//  z=coords[3][2];
   
 //  line(0, 0, 0, x1, y1, z1);
 //  stroke(255, 255, 0);
