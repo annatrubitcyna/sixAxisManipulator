@@ -36,6 +36,9 @@ boolean first=true;
 String exeption="OK";
 float[][] R; //<>//
 
+
+int caseM=0;
+
 void drawManipulator()
 {
   clear();

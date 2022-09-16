@@ -1,5 +1,6 @@
 boolean firstCloserToThird(float first, float second, float third){
-  return abs(third-first)<abs(third-second);
+  
+  return abs(an(third-first))<abs(an(third-second));
 }
 
 float[] newThreeAxisBackwardTransfer(float x, float y, float z)
@@ -43,10 +44,14 @@ float[] newThreeAxisBackwardTransfer(float x, float y, float z)
         if(firstCloserToThird(t211, t212, angles[1])){
           t2=t211;
           t3=t31;
+          
+          caseM=1;
         }
         else{
           t2=t212;
           t3=t32;
+          
+          caseM=2;
         }
       }
       else{
@@ -54,10 +59,14 @@ float[] newThreeAxisBackwardTransfer(float x, float y, float z)
         if(firstCloserToThird(t221, t222, angles[1])){
           t2=t221;
           t3=t32;
+          
+          caseM=3;
         }
         else{
           t2=t222;
           t3=t31;
+          
+          caseM=4;
         }
       }
       

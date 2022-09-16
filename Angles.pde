@@ -14,7 +14,7 @@ float an(float t3){ //angle in normal interval (to compare angles)
   if(t3>PI){
      t3-=2*PI;
    }
-   if(t3<=-PI){
+   if(t3<-PI){
      t3+=2*PI;
    }
    return t3;

@@ -79,6 +79,8 @@ void printText(){
   textSize(textSize);
   text(exeption, startX, startY);
   
+  text(caseM, startX, startY-textSize*2);
+  
   
   float[] euler=findEulerAngles(R);
   
@@ -94,4 +96,6 @@ void printText(){
   text(euler[1],startX+5*textSize/2, startY+textSize*k);
   text("EA_3: ", startX, startY+textSize*k*2);
   text(euler[2],startX+5*textSize/2, startY+textSize*k*2);
+  
+  
 }

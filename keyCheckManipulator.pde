@@ -3,7 +3,7 @@ void keyCheck(){
 //работа с клавиатурой
   if (keyPressed){
     if (key == CODED) {
-      int linearVelocity=2;
+      int linearVelocity=4;
       if (keyCode == UP)
       {
         z+=linearVelocity;
