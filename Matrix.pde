@@ -24,6 +24,17 @@ float[][] dot(float[][] first, float[][] second){
   return ans;
 }
 
+void printMatrix(float[][] M){
+  print("[");
+  for(int i=0; i<R.length; i++){
+    for (int j=0; j<R[0].length; j++){
+      print(M[i][j], ",");
+    }
+    println("]");
+  }
+  print("]");
+}
+
 float[][] transpose(float[][] matrix){
   int v=matrix.length;
   int h=matrix[0].length;

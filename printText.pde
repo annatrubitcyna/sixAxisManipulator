@@ -19,6 +19,25 @@ void printAngle(String name, String letters, int n){
   textSize(30);
   text(letters, startX-3*textSize/2, startY+textSize*k*(n-1));
 }
+
+void printR(){
+  startX=1200;
+  startY=700;
+  textSize=40;
+  textSize(textSize);
+  text(R[0][0], startX, startY);
+  text(R[0][1], startX+5*textSize/2, startY);
+  text(R[0][2], startX+10*textSize/2, startY);
+  
+  text(R[1][0], startX, startY+textSize);
+  text(R[1][1], startX+5*textSize/2, startY+textSize);
+  text(R[1][2], startX+10*textSize/2, startY+textSize);
+  
+  text(R[2][0], startX, startY+2*textSize);
+  text(R[2][1], startX+5*textSize/2, startY+2*textSize);
+  text(R[2][2], startX+10*textSize/2, startY+2*textSize);
+}
+
 void printC23(){
   startX=100;
   startY=270;
@@ -97,5 +116,6 @@ void printText(){
   text("EA_3: ", startX, startY+textSize*k*2);
   text(euler[2],startX+5*textSize/2, startY+textSize*k*2);
   
+  printR();
   
 }

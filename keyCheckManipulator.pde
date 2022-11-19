@@ -26,41 +26,44 @@ void keyCheck(){
       changeAngles=false;
     } else {
       float angularVelocity=radians(2);
-      if (key== 'q'){
+      if (key== 'q' | key=='й'){
         angles[0]=an(angles[0]-angularVelocity);
       }
-      if (key == 'w'){
+      if (key == 'w' | key=='ц'){
         angles[0]=an(angles[0]+angularVelocity);
       }
-      if (key== 'e'){
+      if (key== 'e' | key=='у'){
         angles[1]=an(angles[1]-angularVelocity);
       }
-      if (key== 'r'){
+      if (key== 'r' | key=='к'){
         angles[1]=an(angles[1]+angularVelocity);
       }
-      if (key== 't'){
+      if (key== 't' | key=='е'){
         angles[2]=an(angles[2]-angularVelocity);
       }
-      if (key== 'y'){
+      if (key== 'y' | key=='н'){
         angles[2]=an(angles[2]+angularVelocity);
       }
-      if (key== 'a'){
+      if (key== 'a' | key=='ф'){
         angles[3]=an(angles[3]-angularVelocity);
       }
-      if (key== 's'){
+      if (key== 's' | key=='ы'){
         angles[3]=an(angles[3]+angularVelocity);
       }
-      if (key== 'd'){
+      if (key== 'd' | key=='в'){
         angles[4]=an(angles[4]-angularVelocity);
       }
-      if (key== 'f'){
+      if (key== 'f' | key=='а'){
         angles[4]=an(angles[4]+angularVelocity);
       }
-      if (key== 'g'){
+      if (key== 'g' | key=='п'){
         angles[5]=an(angles[5]-angularVelocity);
       }
-      if (key== 'h'){
+      if (key== 'h' | key=='р'){
         angles[5]=an(angles[5]+angularVelocity);
+      }
+      if(key=='n' | key=='т'){
+        first=true;
       }
       changeAngles=true;
     }

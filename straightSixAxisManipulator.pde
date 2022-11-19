@@ -19,7 +19,7 @@ float[][] straightTransferCoord(float t1, float t2, float t3, float[][] T)
   float x=XYZ[0][0];
   float y=XYZ[1][0];
   float z=XYZ[2][0];
-  println("xyz", x, y, z);
+  //println("xyz", x, y, z);
   float[][] coords={{x1, y1, z1}, {x2, y2, z2}, {x3, y3, z3}, {x, y, z}};
   return coords;
 }

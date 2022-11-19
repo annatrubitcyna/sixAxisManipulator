@@ -5,7 +5,7 @@ boolean firstCloserToThird(float first, float second, float third){
 
 float[] newThreeAxisBackwardTransfer(float x, float y, float z)
 {
-  float[] a = {0, 0, l[2], l[3]};  // массив значений a_i
+  float[] a = {0, 0, l[2], l[3]};  // массив значений a_i;
   float[] d = {0, l[1], 0, 0};  // массив значений d_i
   float r1 = sqrt(sq(x)+sq(y));
   float r2 = z - d[1];
@@ -127,7 +127,7 @@ float[] orientationBackwardsTransfer(float t1, float t2, float t3, float[][] R)
 
 float[] backwardTransfer(float x, float y, float z, float[][] R)
 {
-  //+- не косячная запись p40=p60-d6*R60*[0; 0;1]
+  //+- не косячная запись p40=p60-d6*R60*[0; 0;1] //<>//
   float[] d = {0, l[1], 0, 0, l[3], 0, l[4]};
   float[][] k={{0}, {0}, {1}};
   float[][] p46=dotL(dot(R, k), d[6]);
@@ -141,7 +141,7 @@ float[] backwardTransfer(float x, float y, float z, float[][] R)
   
   float[] newAngles={t1, t2, t3, t4, t5, t6};
   //float[] newAngles={t1, t2, t3, angles[3], angles[4], angles[5]};
-  println("t", t1, t2, t3, t4, t5, t6);
+  //println("t", t1, t2, t3, t4, t5, t6);
   return newAngles;
 }
 
@@ -152,7 +152,7 @@ float[] findEulerAngles(float[][] R){
     t4=an(atan2(R[1][0], R[0][0])-t6);
   }
   else if (R[2][2]==-1){
-    t5=0;
+    t5=an(PI);
     t6=0; //выбираем t6 любым
     t4=an(atan2(-R[0][1], -R[0][0])+t6);
   }

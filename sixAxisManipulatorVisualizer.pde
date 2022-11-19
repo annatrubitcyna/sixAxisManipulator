@@ -34,7 +34,8 @@ boolean changeAngles=false;
 boolean first=true;
 
 String exeption="OK";
-float[][] R; //<>//
+private float[][] R =new float[3][3];
+private float[] r ={1,2};
 
 
 int caseM=0;
@@ -52,26 +53,18 @@ void drawManipulator()
   //sphere(l[1]+l[2]+l[3]+l[4]);
   
   if (first){
-    angles[0]=0;
-    angles[1]=PI/2;
-    angles[2]=-PI/2;
-    angles[3]=0;
-    angles[4]=PI;
-    angles[5]=0;
+    //start_angles(0, PI/2, -PI/2, 0, PI, 0);
+    //R[0][0]=-1;R[0][1]= 0; R[0][2]= 0;
+    //R[1][0]= 0; R[1][1]= 1; R[1][2]= 0;
+    //R[2][0]= 0; R[2][1]= 0; R[2][2]= 1;
+    R=getRfromSixOrCoordinates(0.5, 0.6, 0.3);
     
-    float[][][] Ta=getT(angles[0], angles[1], angles[2], angles[3], angles[4], angles[5]);
-    R=getR(Ta[5]);
-    float[][] coords=straightTransferCoord(angles[0], angles[1], angles[2], Ta[5]); 
-    
-    x=coords[3][0];
-    y=coords[3][1];
-    z=coords[3][2];
-    
-    //x=100; y=0; z=200;
-    angles=backwardTransfer(x, y, z, R);
-    changeAngles=true;
-    first=false;
+    ////R[0][0]=0.087;R[0][1]= -0.854; R[0][2]= -0.513;R[1][0]= 0.708; R[1][1]= -0.309; R[1][2]= 0.635;R[2][0]= -0.701; R[2][1]= -0.418; R[2][2]= 0.578;
+    start_coords(-70, -10, 90, R);
   }
+ 
+  
+  
   
   float[][][] Ta=getT(angles[0], angles[1], angles[2], angles[3], angles[4], angles[5]);
   if (!changeAngles) {
