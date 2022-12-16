@@ -85,7 +85,6 @@ void draw()
   fill(255,0,255);
   gfx.mesh(mesh,false,0);
   noFill();
-  
   popMatrix();
   
   //Global Transform Matrices end

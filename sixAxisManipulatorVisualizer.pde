@@ -43,8 +43,9 @@ int caseM=0;
 void drawManipulator()
 {
   clear();
+  //background(255);
   stroke(255, 0, 0);
-  strokeWeight(7);
+  strokeWeight(7); //7
   strokeCap(ROUND);
   
   //stroke(255, 255, 255, 50);
@@ -53,14 +54,15 @@ void drawManipulator()
   //sphere(l[1]+l[2]+l[3]+l[4]);
   
   if (first){
+    
     //start_angles(0, PI/2, -PI/2, 0, PI, 0);
     //R[0][0]=-1;R[0][1]= 0; R[0][2]= 0;
     //R[1][0]= 0; R[1][1]= 1; R[1][2]= 0;
     //R[2][0]= 0; R[2][1]= 0; R[2][2]= 1;
-    R=getRfromSixOrCoordinates(0.5, 0.6, 0.3);
+    //R=getRfromSixOrCoordinates(0.5, 0.6, 0.3);
     
     ////R[0][0]=0.087;R[0][1]= -0.854; R[0][2]= -0.513;R[1][0]= 0.708; R[1][1]= -0.309; R[1][2]= 0.635;R[2][0]= -0.701; R[2][1]= -0.418; R[2][2]= 0.578;
-    start_coords(-70, -10, 90, R);
+    //start_coords(-70, -10, 90, R);
   }
  
   
@@ -72,7 +74,7 @@ void drawManipulator()
     angles=backwardTransfer(x, y, z, R);
     changeAngles=true;
   }
-  float[][] coords=straightTransferCoord(angles[0], angles[1], angles[2], Ta[5]); 
+  float[][] coords=straightTransferCoord(angles[0], angles[1], angles[2], Ta); 
   //эта функция может искать T внутри, тогда ее передавать не надо, а надо t4, t5, t6
   
   //это сделано для удобства функции line, можно работать с coords
