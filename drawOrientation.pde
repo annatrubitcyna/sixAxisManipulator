@@ -29,8 +29,9 @@ void drawOrientations(float x1, float y1, float z1, float x2, float y2, float z2
   //textSize(40);
   //text("x", 180, 30);
   
-  drawOrientation(x1, y1, z1, Ta[0], 5);
-  drawOrientation(x2, y2, z2, Ta[1], 5);
-  drawOrientation(x3, y3, z3, Ta[3], 5);
-  drawOrientation(x, y, z, Ta[5], 10);
+  int do_len=5;
+  drawOrientation(x1, y1, z1, Ta[0], do_len);
+  drawOrientation(x2, y2, z2, Ta[1], do_len);
+  drawOrientation(x3, y3, z3, Ta[3], do_len);
+  drawOrientation(x, y, z, Ta[5], do_len*2);
 }

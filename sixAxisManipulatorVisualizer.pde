@@ -29,6 +29,7 @@ private float t4;
 private float t5;
 private float t6;
 
+//для удобства все первые 0, поэтому a1=a[1], однако у углов (angles) отсчет с 0
 float[] a = {0, 0, l[2], 0, 0, 0, 0};
 float[] alpha = {0, PI / 2, 0, PI / 2, -PI / 2, PI / 2, 0};
 float[] d = {0, l[1], 0, 0, l[3], 0, l[4]};
@@ -120,6 +121,7 @@ void drawManipulator()
   
   //drawOrientation(x, y, z, T);  //это для отрисовки только последней системы координат
   drawOrientations(x1, y1, z1, x2, y2, z2, x3, y3, z3, x, y, z, Ta);
-  
+  drawAngles();
+ 
   keyCheck();
 }

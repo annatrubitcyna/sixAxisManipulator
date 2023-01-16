@@ -21,6 +21,9 @@ void draw()
   //true/false - visibility of Top/Bottom segments
   //modTrWid - global constant of width of translation rectangles around the screen
   checkModelRotation();
+  stroke(255, 255, 255);
+  strokeWeight(17); //7
+  arc(0, 0, 0, 100, 0, PI);
 
  
   //Global Transform Matrices start
@@ -77,15 +80,15 @@ void draw()
   strokeWeight(1);
   
   //Drawing Model
-  pushMatrix();
-  rotateZ(PI);
-  translate(-100,-100,0);
-  gfx.origin(new Vec3D(),0);
-  noStroke();
-  fill(255,0,255);
-  gfx.mesh(mesh,false,0);
-  noFill();
-  popMatrix();
+  //pushMatrix();
+  //rotateZ(PI);
+  //translate(-100,-100,0);
+  //gfx.origin(new Vec3D(),0);
+  //noStroke();
+  //fill(255,0,255);
+  //gfx.mesh(mesh,false,0);
+  //noFill();
+  //popMatrix();
   
   //Global Transform Matrices end
   popMatrix();  
