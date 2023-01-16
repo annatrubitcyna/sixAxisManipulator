@@ -1,9 +1,10 @@
 float[][][] getT3(float t1, float t2, float t3){
   t3 = t3 + PI / 2;
   
-  float[] a = {0, 0, l[2], 0, 0, 0, 0};
-  float[] alpha = {0, PI / 2, 0, PI / 2, -PI / 2, PI / 2, 0};
-  float[] d = {0, l[1], 0, 0, l[3], 0, l[4]};
+  //float[] a = {0, 0, l[2], 0, 0, 0, 0};
+  //float[] alpha = {0, PI / 2, 0, PI / 2, -PI / 2, PI / 2, 0};
+  //float[] d = {0, l[1], 0, 0, l[3], 0, l[4]};
+  
   
   float[][] T_0_1 = {{cos(t1), -sin(t1) * cos(alpha[1]), sin(t1) * sin(alpha[1]), a[1] * cos(t1)},
                     {sin(t1), cos(t1) * cos(alpha[1]), -cos(t1) * sin(alpha[1]), a[1] * sin(t1)},
@@ -27,9 +28,9 @@ float[][][] getT3(float t1, float t2, float t3){
 
 float[][][] getT(float t1, float t2, float t3, float t4, float t5, float t6){
   
-  float[] a = {0, 0, l[2], 0, 0, 0, 0};
-  float[] alpha = {0, PI / 2, 0, PI / 2, -PI / 2, PI / 2, 0};
-  float[] d = {0, l[1], 0, 0, l[3], 0, l[4]};
+  //float[] a = {1, 1, l[2], 1, 1, 1, 1};
+  //float[] alpha = {0, PI / 2, 0, PI / 2, -PI / 2, PI / 2, 0};
+  //float[] d = {1, l[1], 1, 1, l[3], 1, l[4]};
    
   float[][]T_3_4 = {{cos(t4), -sin(t4) * cos(alpha[4]), sin(t4) * sin(alpha[4]), a[4] * cos(t4)},
                     {sin(t4), cos(t4) * cos(alpha[4]), -cos(t4) * sin(alpha[4]), a[4] * sin(t4)},
