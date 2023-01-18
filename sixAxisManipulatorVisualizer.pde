@@ -48,6 +48,9 @@ int caseM=0;
 
 void drawManipulator()
 {
+  //float[][] check={{0,2,3, 4},{5, 6, 0, 8},{9,10, 11, 12}, {13,14,15,0}};
+  //printMatrix(dotL(inverse4(check), 1004));
+  //print(det4(check));
   clear();
   //background(255);
   stroke(255, 0, 0);
@@ -117,11 +120,19 @@ void drawManipulator()
   stroke(0, 255, 255);
   line(x3, y3, z3, x, y, z);
   
+  pushMatrix();
+  translate (x,y,z);
+  stroke(255,255,255);
+  sphere(3);
+  popMatrix();  
   noFill();
   
   //drawOrientation(x, y, z, T);  //это для отрисовки только последней системы координат
   drawOrientations(x1, y1, z1, x2, y2, z2, x3, y3, z3, x, y, z, Ta);
   drawAngles();
- 
+  //stroke(255,255,255);
+  //strokeWeight(17);
+  //float nl=sqrt(sq(nx)+sq(ny)+ sq(nz))/100;
+  //line(0,0,0,nx/nl,ny/nl,nz/nl);
   keyCheck();
 }

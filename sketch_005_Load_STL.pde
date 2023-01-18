@@ -13,6 +13,7 @@ void draw()
   
   //Check Keyboart Input
   checkKeyboard();
+  mouseCheck();
   
   
   //ScreenCoordinates
@@ -97,6 +98,8 @@ void draw()
   printText();
   popMatrix();
 }
+
+
 
 TriangleMesh mesh;
 ToxiclibsSupport gfx;

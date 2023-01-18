@@ -44,6 +44,7 @@ void drawAngles(){
   rotateX(alpha[3]);
   translate(0, 0, d[4]+d[6]*cos(angles[4]));
   float d_a4=2*d[6]*sin(angles[4]);
+  draw_dotted_circle(0, 0, d_a4);
   if(angles[3]>0)  arc(0, 0, d_a4, d_a4, 0, angles[3]);
   else arc(0, 0, d_a4, d_a4, angles[3], 0);
   translate(0, 0, -d[4]-d[6]*cos(angles[4]));
@@ -61,6 +62,7 @@ void drawAngles(){
   translate(a[5], 0, 0);
   rotateX(alpha[5]);
   translate(0, 0, d[6]);
+  draw_dotted_circle(0, 0, 40);
   if(angles[5]>0)  arc(0, 0, 40, 40, 0, angles[5]);
   else arc(0, 0, 40, 40, angles[5], 0);
   rotateZ(angles[5]);
