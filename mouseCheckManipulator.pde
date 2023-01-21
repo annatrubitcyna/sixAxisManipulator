@@ -1,7 +1,3 @@
-float nx;
-float ny;
-float nz;
-
 float[][] matrixX(float tx){
   float[][] matrixX={{1,0,0, 0},
                       {0, cos(tx),-sin(tx), 0}, 
@@ -87,7 +83,7 @@ void mouseCheck(){
     float[][] normal=vect_mul(v1_3l, v2_3l);
     normal=dot(MTr_plane_to_3D, normal);
     //printMatrix(normal);
-    nx=normal[0][0]; ny=normal[1][0]; nz=normal[2][0];
+    float nx=normal[0][0]; float ny=normal[1][0]; float nz=normal[2][0];
     
     //коэффициент, необходимый дальше
     float a=(nx*(x-mouse_coords_3D[0][0])+ny*(y-mouse_coords_3D[1][0])+nz*(z-mouse_coords_3D[2][0]))/ (sq(nx)+sq(ny)+sq(nz)); //<>// //<>//

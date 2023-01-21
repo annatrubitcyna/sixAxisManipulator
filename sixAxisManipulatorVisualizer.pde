@@ -135,4 +135,13 @@ void drawManipulator()
   //float nl=sqrt(sq(nx)+sq(ny)+ sq(nz))/100;
   //line(0,0,0,nx/nl,ny/nl,nz/nl);
   keyCheck();
+  float[][] centre_of_gr=centreOfGravity(0,1,1,1,1,5);
+  printMatrix(centre_of_gr);
+  
+  pushMatrix();
+  translate (centre_of_gr[0][0],centre_of_gr[1][0], centre_of_gr[2][0]);
+  stroke(255,255,0);
+  sphere(3);
+  popMatrix();  
+  noFill();
 }
