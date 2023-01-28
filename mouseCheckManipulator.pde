@@ -54,6 +54,8 @@ void mouseCheck(){
     float[][] MTr_plane_to_3D= dot(MTr10, dot(MTr9, dot(MTr8, dot(MTr7, dot(MTr5, dot(MTr4, dot(MTr3, dot(MTr2, MTr1))))))));
     //float[][] MTr_plane_to_3D_inv=inverse4(MTr_plane_to_3D); //<>// //<>//
     float[][] mouse_coords_3D= dot(MTr_plane_to_3D, mouse_coords); //координаты мышки в 3х-мерном пространстве с учетом камеры и сдвигов
+    //mouse_coords_3D=dotL(mouse_coords_3D, 1/tan(PI/3));
+    
     //println("!!!");
     //printMatrix(mouse_coords_3D);
     //mouse_coords_3D[1][0]=-mouse_coords_3D[1][0];

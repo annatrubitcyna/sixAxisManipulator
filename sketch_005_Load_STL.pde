@@ -7,6 +7,7 @@ void setup() {
 
 void draw() 
 {
+  ortho();
   //PREPARATIONS
   background(0);
   lights();
