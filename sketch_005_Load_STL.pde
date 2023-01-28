@@ -13,7 +13,7 @@ void draw()
   
   //Check Keyboart Input
   checkKeyboard();
-  mouseCheck();
+  if(mouseCheck)  mouseCheck();
   
   
   //ScreenCoordinates

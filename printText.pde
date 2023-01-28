@@ -83,12 +83,26 @@ void printText(){
   
   printC23();  
   
+  startY=400;
+  textSize(textSize);
+  text("front p ", startX, startY+textSize*k*4);
+  text("right l ", startX, startY+textSize*k*5);
+  text("top m ", startX, startY+textSize*k*6);
+  
   printAngle("Th1", "q w", 1);
   printAngle("Th2", "e r", 2);
   printAngle("Th3", "t y", 3);
   printAngle("Th4", "a s", 4);
   printAngle("Th5", "d f", 5);
   printAngle("Th6", "g h", 6);
+  
+  textSize(30);
+  text("n   start position", startX-3*textSize/2, startY+textSize*1.2*6);
+  text("j   mouse checking", startX-3*textSize/2, startY+textSize*1.15*7);
+  if(mouseCheck) text("on", startX-3*textSize/2+20*textSize/2, startY+textSize*1.15*7);
+  else text("off", startX-3*textSize/2+20*textSize/2, startY+textSize*1.15*7);
+  text("i   go with speed", startX-3*textSize/2, startY+textSize*1.1*8);
+  
   
   startX=400;
   startY=800;

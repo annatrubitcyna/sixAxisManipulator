@@ -51,7 +51,7 @@ float[][] getRfromSixOrCoordinates(float ax1, float ay1, float ax2){
     //z-axis
     R[0][2]=ay1*az2-ay2*az1; R[1][2]=ax2*az1-ax1*az2; R[2][2]=ax1*ay2-ax2*ay1;
   }
-  printMatrix(R);
+  //printMatrix(R);
   return R;
 }
 

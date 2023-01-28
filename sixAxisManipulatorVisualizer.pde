@@ -39,18 +39,28 @@ int start_method=0; // 0 для задания через углы в радиа
 float[] angles={0, 0, 0, 0, 0,  0};
 boolean changeAngles=true;
 boolean first=true;
+boolean singularity=false;
 
 String exeption="OK";
 private float[][] R =new float[3][3];
+boolean mouseCheck=false;
 
 
 int caseM=0;
 
 void drawManipulator()
 {
-  //float[][] check={{0,2,3, 4},{5, 6, 0, 8},{9,10, 11, 12}, {13,14,15,0}};
-  //printMatrix(dotL(inverse4(check), 1004));
-  //print(det4(check));
+  //float[][] v1={{1},{2},{3}};
+  //float[][] v2={{4},{5},{6}};
+  //float[][] v3=vect_mul(v1,v2);
+  //printMatrix(v3);
+  
+  
+  //float[][] check={{1,2,3, 4, 0},{6, 0, 8, 9, 10},{11, 12, 0, 14, 15}, {16,17,18,19,20}, {21,22,23,24,0}};
+  //float[][] check={{1,0},{0,1}};
+  //printMatrix(dotL(inverse(check), 1));
+  //print("det: "); println(det(check));
+  
   clear();
   //background(255);
   stroke(255, 0, 0);
@@ -63,6 +73,14 @@ void drawManipulator()
   //sphere(l[1]+l[2]+l[3]+l[4]);
   
   if (first){
+    //использовать, чтобы задать стартовое положение через углы поворота сочленений манипулятора в радианах!
+    if(start_method==0){
+       float[] angles1={0, 0, 0, 0, 0,  0}; //тут задавать
+      for(int i=0;i<6; i++){
+        angles[i]=an(angles1[i]);
+        first=false;
+      }
+    }
     
     //использовать, чтобы задать стартовое положение через углы поворота сочленений манипулятора в градусах (в радианах наверху)
     if(start_method==1){
@@ -136,7 +154,7 @@ void drawManipulator()
   //line(0,0,0,nx/nl,ny/nl,nz/nl);
   keyCheck();
   float[][] centre_of_gr=centreOfGravity(0,1,1,1,1,5);
-  printMatrix(centre_of_gr);
+  //printMatrix(centre_of_gr);
   
   pushMatrix();
   translate (centre_of_gr[0][0],centre_of_gr[1][0], centre_of_gr[2][0]);

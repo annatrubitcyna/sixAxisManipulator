@@ -65,7 +65,18 @@ void keyCheck(){
       if(key=='n' | key=='т'){
         first=true;
       }
+      if(key=='i' | key=='ь'){  
+        //for( int time=0;time<100;time++){
+        //goWithSpeed();
+        goWithSpeedGrip();
+      }
       changeAngles=true;
     }
   }
+}
+
+void keyReleased(){
+  if(key=='j' | key=='ь'){
+        mouseCheck=!mouseCheck;
+      }
 }
