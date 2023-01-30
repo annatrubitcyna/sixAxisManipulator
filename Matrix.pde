@@ -1,3 +1,24 @@
+float[][] nullMatrix(int m, int n){
+  float[][] ans= new float[m][n];
+  for (int i = 0; i < m; i++){
+    for (int j = 0; j < n; j++){
+      ans[i][j]=0;
+    }  
+  }
+  return ans;
+}
+
+float[][] eye(int m){
+  float[][] ans= new float[m][m];
+  for (int i = 0; i < m; i++){
+    for (int j = 0; j < m; j++){
+      if(i==j) ans[i][j]=1;
+      else ans[i][j]=0;
+    }
+  }  
+  return ans;
+}
+
 float[][] dot(float[][] first, float[][] second){
   int m=first.length;
   int n=second.length;
@@ -141,6 +162,46 @@ float[][] inverse(float[][] matrix){
   return inv_matrix;
 }
 
+float[][] blockOfMatrix(float[][] M, int first_index_x, int first_index_y, int last_index_x, int last_index_y ){
+  int n=last_index_x- first_index_x+1;
+  int m=last_index_y-first_index_y+1;
+  float[][] ans=new float[n][m];
+  for(int i=0;i<n; i++){
+    for(int j=0;j<m; j++){
+      ans[i][j]=M[first_index_x+i][first_index_y+j];
+    }
+  }
+  return ans;
+}
+
+float[][] blockMatrix(float[][] M1, float[][] M2, float[][] M3, float[][] M4){
+  int a=M1.length;
+  int b=M1[0].length;
+  int c=M2[0].length;
+  int d=M3.length;
+  float[][] ans=new float[a+d][b+c];
+  for(int i=0;i<a; i++){
+    for(int j=0;j<b; j++){
+      ans[i][j]=M1[i][j];
+    }
+  }
+  for(int i=0;i<a; i++){
+    for(int j=0;j<c; j++){
+      ans[i][b+j]=M2[i][j];
+    }
+  }
+  for(int i=0;i<d; i++){
+    for(int j=0;j<b; j++){
+      ans[a+i][j]=M3[i][j];
+    }
+  }
+  for(int i=0;i<d; i++){
+    for(int j=0;j<c; j++){
+      ans[a+i][b+j]=M4[i][j];
+    }
+  }
+  return ans;
+}
 
 
 

@@ -50,6 +50,10 @@ int caseM=0;
 
 void drawManipulator()
 {
+  //printMatrix(nullMatrix(1,3));
+  //printMatrix(eye(3));
+  //printMatrix(blockMatrix( dotL(eye(3),5), nullMatrix(3,1), nullMatrix(1,3), eye(1)));
+  
   //float[][] v1={{1},{2},{3}};
   //float[][] v2={{4},{5},{6}};
   //float[][] v3=vect_mul(v1,v2);
@@ -66,6 +70,8 @@ void drawManipulator()
   stroke(255, 0, 0);
   strokeWeight(7); //7
   strokeCap(ROUND);
+  stroke(255, 255, 0);
+  line(pointc_coords_3D[0][0]*0.9,pointc_coords_3D[1][0]*0.9,pointc_coords_3D[2][0]*0.9, -pointc_coords_3D[0][0]*0.9,-pointc_coords_3D[1][0]*0.9,-pointc_coords_3D[2][0]*0.9);
   
   //stroke(255, 255, 255, 50);
   //sphereDetail(10);
@@ -104,12 +110,18 @@ void drawManipulator()
   
   
   float[][][] Ta=getT(angles[0], angles[1], angles[2], angles[3], angles[4], angles[5]);
+  
+  float[][][] Ha=straightTwist();
+  Ta=straightTwist();
+  //printMatrix(Ha[5]);
   if (!changeAngles) {
     R=getR(Ta[5]);
     angles=backwardTransfer(x, y, z, R);
     changeAngles=true;
   }
-  float[][] coords=straightTransferCoord(angles[0], angles[1], angles[2], Ta); 
+  
+  //float[][] coords=straightTransferCoord(angles[0], angles[1], angles[2], Ta);
+  float[][] coords=straightTransferCoord(angles[0], angles[1], angles[2], Ta);
   //эта функция может искать T внутри, тогда ее передавать не надо, а надо t4, t5, t6
   
   //это сделано для удобства функции line, можно работать с coords

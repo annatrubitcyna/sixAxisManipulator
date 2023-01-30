@@ -17,3 +17,12 @@ float[][] vect_mul(float[][] v1, float[][] v2){
   float[][] vect_mul={{vmx},{vmy},{vmz}};
   return vect_mul;
 }
+
+float norm_vect(float[][] vect){
+  int n=vect.length;
+  int ans=0;
+  for(int i=0;i<n;i++){
+    ans+=sq(vect[i][0]);
+  }
+  return sqrt(ans);
+}
