@@ -65,7 +65,7 @@ void keyCheck(){
       if(key=='n' | key=='т'){
         first=true;
       }
-      if(key=='i' | key=='ь'){  
+      if(key=='i' | key=='ш'){  
         //for( int time=0;time<100;time++){
         //goWithSpeed();
         goWithSpeedGrip();
@@ -76,7 +76,7 @@ void keyCheck(){
 }
 
 void keyReleased(){
-  if(key=='j' | key=='ь'){
+  if(key=='j' | key=='о'){ 
         mouseCheck=!mouseCheck;
       }
 }

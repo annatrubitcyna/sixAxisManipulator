@@ -1,3 +1,5 @@
+float[][] pointc_coords_3D={{0},{0},{0}};
+
 float[][] matrixX(float tx){
   float[][] matrixX={{1,0,0, 0},
                       {0, cos(tx),-sin(tx), 0}, 
@@ -43,7 +45,7 @@ void mouseCheck(){
     float[][] MTr1={{-1, 0,0, 0},{0,1,0, 0},{0,0,1, 0}, {0,0,0,1}}; //scale(-1, 1, 1);
     float[][] MTr2=matrixX(PI/2); //rotateX(PI/2);
     float[][] MTr3=matrixZ(PI/2); //rotateZ(PI/2);
-    float[][] MTr4=matrixTranslate(1*sceBoxSize, width/2, -height*0.6); //translate(1*sceBoxSize, width/2, -height*0.6);
+    float[][] MTr4=matrixTranslate(1*sceBoxSize, width/2, -height*0.5); //translate(1*sceBoxSize, width/2, -height*0.6);
     float[][] MTr5=matrixTranslate(camTX,camTY,camTZ); //translate(camTX,camTY,camTZ);
     //float[][] MTr6={{targetCamRX, 0,0, 0},{0,targetCamRY,0, 0},{0,0, targetCamRZ, 0}, {0,0,0,1}}; //smoothRX(targetCamRX); smoothRY(targetCamRY); smoothRZ(targetCamRZ);
     float[][] MTr7=matrixX(radians(camRX)); //rotateX(radians(camRX));
@@ -65,8 +67,11 @@ void mouseCheck(){
     float[][] point2_coords={{100},{0},{0}, {1}}; //<>// //<>//
     float[][] point3_coords={{0},{100},{0}, {1}};
     float[][] point1_coords_3D=dot(MTr_plane_to_3D, point1_coords);
+    //printMatrix(point1_coords_3D);
     float[][] point2_coords_3D=dot(MTr_plane_to_3D, point2_coords);
     float[][] point3_coords_3D=dot(MTr_plane_to_3D, point3_coords);
+    
+    
     //println("2");
     //printMatrix(point2_coords_3D);
     //println("3");
@@ -87,6 +92,7 @@ void mouseCheck(){
     //printMatrix(normal);
     float nx=normal[0][0]; float ny=normal[1][0]; float nz=normal[2][0];
     
+    
     //коэффициент, необходимый дальше
     float a=(nx*(x-mouse_coords_3D[0][0])+ny*(y-mouse_coords_3D[1][0])+nz*(z-mouse_coords_3D[2][0]))/ (sq(nx)+sq(ny)+sq(nz)); //<>// //<>//
     //println(a);
@@ -98,5 +104,34 @@ void mouseCheck(){
     x=mouse_man_coords_3D[0][0];
     y=mouse_man_coords_3D[1][0];
     z=mouse_man_coords_3D[2][0];
+    
+    
+    
+    
+    
+    ////2 способ
+    ////float[][] pointc_coords={{width/2},{height/2},{0},{1}};
+    ////float[][] pointc_coords={{width},{0},{0},{1}};
+    //////pointc_coords_3D=dot(dot(MTr5, dot(MTr4, dot(MTr3, dot(MTr2, MTr1)))), pointc_coords);
+    ////pointc_coords_3D=dot(dot(MTr9, dot(MTr8, MTr7)), pointc_coords);
+    ////printMatrix(pointc_coords_3D);
+    //float[][] pointc_coords_3D={{-1600},{0},{0}, {1}};
+    
+    ////ветор между точкой мыши и точкой где сходятся все прямые из-за перспективы
+    //float[][] vector=subM(dotL(pointc_coords_3D, 1), mouse_coords_3D);
+    ////printMatrix(vector);
+    //float vx=vector[0][0]; float vy=vector[1][0]; float vz=vector[2][0];
+    
+    ////коэффициент, необходимый дальше
+    //float b=(vx*(x-mouse_coords_3D[0][0])+vy*(y-mouse_coords_3D[1][0])+vz*(z-mouse_coords_3D[2][0]))/ (sq(vx)+sq(vy)+sq(vz)); //<>//
+    ////println(a);
+    //float[][] mouse_coords_3D_3l_2= {mouse_coords_3D[0], mouse_coords_3D[1], mouse_coords_3D[2]};
+    ////ближайшая к концу манипулятора точка, лажащая на прямой через точку мышки перпендикулярно плоскости экрана
+    //float[][] mouse_man_coords_3D_2= addM(mouse_coords_3D_3l_2, dotL(vector, b));
+    ////printMatrix(mouse_man_coords_3D);
+    
+    //x=mouse_man_coords_3D_2[0][0];
+    //y=mouse_man_coords_3D_2[1][0];
+    //z=mouse_man_coords_3D_2[2][0];
   }
 }

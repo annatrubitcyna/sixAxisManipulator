@@ -37,7 +37,7 @@ void draw()
   //Some basic rotations and transformations of Camera
   rotateX(PI/2);
   rotateZ(PI/2);
-  translate(1*sceBoxSize, width/2, -height*0.6);
+  translate(1*sceBoxSize, width/2, -height*0.5);
   
   //moving Camera around the Camera
   translate(camTX,camTY,camTZ);
@@ -60,7 +60,7 @@ void draw()
   //Drawing some box with center in (0,0,0) at Scene
   stroke(255);
   noFill();
-  //box(800);
+  box(800);
   
   //Some transforms of Model
   
@@ -78,7 +78,7 @@ void draw()
   //Drawing some box with center in (0,0,0) at Model
   stroke(155);
   noFill();
-  //box(200);
+  box(200);
   strokeWeight(1);
   
   //Drawing Model
