@@ -70,6 +70,11 @@ void keyCheck(){
         //goWithSpeed();
         goWithSpeedGrip();
       }
+      if(key=='k' | key=='л'){  
+        //for( int time=0;time<100;time++){
+        //goWithSpeed();
+        goWithSpeedGripTwist();
+      }
       changeAngles=true;
     }
   }

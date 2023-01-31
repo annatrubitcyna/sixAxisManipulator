@@ -196,3 +196,24 @@ float[][] getGeomJTwist(){
   Jacobian=transpose(Jacobian);
   return Jacobian;
 }
+
+
+float[][] straightSpeedTransferTwist( float[][] theta_s){
+  float[][] J=getGeomJTwist();
+  float[][] grip_s= dot(J, theta_s);
+  return grip_s;
+}
+
+float[][] backSpeedTransferTwist(float[][] grip_s){
+  float[][] J= getGeomJTwist();;
+  float detJ=det(J);
+  float[][] theta_s={{0},{0},{0}, {0},{0},{0}};
+  //printMatrix(J);
+  if(detJ!=0){
+    float[][] inverseJ=inverse(J);
+    theta_s= dot(inverseJ, grip_s);
+    singularity=false;
+  }
+  else singularity=true;
+  return theta_s;
+}
