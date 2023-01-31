@@ -60,6 +60,25 @@ float[][] transpose(float[][] matrix){
   return matrixT;
 }
 
+float[] transpose_column_to_row(float[][] column){
+  int n=column.length;
+  float[] row= new float[n];
+  for(int i=0; i<n; i++){
+    row[i]=column[i][0];
+  }
+  return row;
+}
+
+float[][] transpose_row_to_column(float[] row){
+  int n=row.length;
+  float[][] column= new float[n][1];
+  for(int i=0; i<n; i++){
+    column[i][0]=row[i];
+  }
+  return column;
+}
+
+
 
 float[][] subM(float[][] first, float[][] second){
   int n=first.length;
