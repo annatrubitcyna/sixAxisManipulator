@@ -12,9 +12,14 @@ float[][][] getUnitTwists(){
   return UnitTwists;
 }
 float[][] getExpWt(float[][] wt){
-  float[][] ExpWt= addM(eye(3), dotL(wt, sin(1)));
+  float[][] w={{-wt[1][2]},{wt[0][2]},{-wt[0][1]}}; //<>//
+  float theta_w=norm_vect(w);
+  if(round(theta_w, 5)!=0){ 
+    wt=dotL(wt, 1/theta_w);
+  } //<>//
+  float[][] ExpWt= addM(eye(3), dotL(wt, sin(theta_w))); //<>//
   float[][] wtsq=dot(wt, wt);
-  ExpWt= addM(ExpWt, dotL(wtsq, 1-cos(1)));
+  ExpWt= addM(ExpWt, dotL(wtsq, 1-cos(theta_w)));
   return ExpWt;
 }
 
@@ -29,10 +34,10 @@ float[][] getExpWt(float[][] wt){
 
 
 float[][] getExpTwist(float[][] Twist){
-  float[][] wt=blockOfMatrix(Twist, 0,0,2,2); //<>//
+  float[][] wt=blockOfMatrix(Twist, 0,0,2,2); //<>// //<>//
   float[][] v=blockOfMatrix(Twist, 0,3,2,3);
   float[][] w={{-wt[1][2]},{wt[0][2]},{-wt[0][1]}};
-  printMatrix(wt);
+  //printMatrix(wt);
   float[][] ExpWt=getExpWt(wt);
   float[][] wTvw=dotL(w, dot(transpose(w), v)[0][0]);
   float[][] ExpTwist21=addM(   dot(subM(eye(3), ExpWt), vect_mul(w, v)),    wTvw);
@@ -73,6 +78,16 @@ float[][][] getHt0(){
   return Ht0;
 }
 
+float[][] normalizeTwist(float[][] Twist){
+  float[][] wt=blockOfMatrix(Twist, 0,0,2,2);
+  float[][] v=blockOfMatrix(Twist, 0,3,2,3);
+  float[][] w={{-wt[1][2]},{wt[0][2]},{-wt[0][1]}};
+  if(round(norm_vect(w), 5)!=0)  wt=dotL(wt, 1/norm_vect(w));
+  if(round(norm_vect(v), 5)!=0) v=dotL(v, 1/norm_vect(v));
+  float[][] UnitTwist= blockMatrix(wt,v, nullMatrix(1,3),eye(1));
+  return UnitTwist;
+}
+
 
 float[][][] straightTwist(){
   float[][][] UnitTwists=getUnitTwists(); //<>//
@@ -90,13 +105,15 @@ float[][][] straightTwist(){
       ExpTwist=getExpTwist(dotL(UnitTwist, angles[i]));
       expMul[i]=ExpTwist;
       H[i]=dot(ExpTwist, Ht0[i]);
-    }
+    } //<>//
     else{
       float[][] TwistI0=dot(H[i-1], dot(UnitTwist, inverse(H[i-1])));
-      ExpTwist=getExpTwist(dotL(TwistI0, angles[i]));
+      float[][] UnitTwistI0=normalizeTwist(TwistI0);
+      ExpTwist=getExpTwist(dotL(UnitTwistI0, angles[i]));
       expMul[i]=dot(expMul[i-1], ExpTwist);
       H[i]=dot(expMul[i], Ht0[i]);
     }
+    print(i); printMatrix(H[i]);
   }
   return H;
 }

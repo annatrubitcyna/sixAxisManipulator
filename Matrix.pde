@@ -231,9 +231,9 @@ float[][] blockMatrix(float[][] M1, float[][] M2, float[][] M3, float[][] M4){
 //        i3+=1; i3s+=1;
 //      }
 //      //алг дополенение (определитель)
-//      det+=matrix[i][0]*pow(-1, i)*det(matrix3); //<>//
+//      det+=matrix[i][0]*pow(-1, i)*det(matrix3); //<>// //<>//
 //    }
-//  return det; //<>//
+//  return det; //<>// //<>//
 //}
 
 ////только для матрицы 3 на 3

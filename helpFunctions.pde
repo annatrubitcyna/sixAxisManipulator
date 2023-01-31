@@ -20,9 +20,9 @@ float[][] vect_mul(float[][] v1, float[][] v2){
 
 float norm_vect(float[][] vect){
   int n=vect.length;
-  int ans=0;
+  float ans=0;
   for(int i=0;i<n;i++){
-    ans+=sq(vect[i][0]);
+    ans+=vect[i][0]*vect[i][0];
   }
   return sqrt(ans);
 }

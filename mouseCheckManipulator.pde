@@ -54,7 +54,7 @@ void mouseCheck(){
     float[][] MTr10={{1, 0,0, 0},{0,-1,0, 0},{0,0,-1, 0}, {0,0,0,1}};; 
     
     float[][] MTr_plane_to_3D= dot(MTr10, dot(MTr9, dot(MTr8, dot(MTr7, dot(MTr5, dot(MTr4, dot(MTr3, dot(MTr2, MTr1))))))));
-    //float[][] MTr_plane_to_3D_inv=inverse4(MTr_plane_to_3D); //<>// //<>//
+    //float[][] MTr_plane_to_3D_inv=inverse4(MTr_plane_to_3D); //<>// //<>// //<>//
     float[][] mouse_coords_3D= dot(MTr_plane_to_3D, mouse_coords); //координаты мышки в 3х-мерном пространстве с учетом камеры и сдвигов
     //mouse_coords_3D=dotL(mouse_coords_3D, 1/tan(PI/3));
     
@@ -64,7 +64,7 @@ void mouseCheck(){
     //mouse_coords_3D[2][0]=-mouse_coords_3D[2][0];
     //эти 2 точки тоже лежат в плоскости экрана, найдем их координаты в 3д, чтобы составить уравнение плоскости и найти вектор нормали
     float[][] point1_coords={{0},{0},{0}, {1}};  
-    float[][] point2_coords={{100},{0},{0}, {1}}; //<>// //<>//
+    float[][] point2_coords={{100},{0},{0}, {1}}; //<>// //<>// //<>//
     float[][] point3_coords={{0},{100},{0}, {1}};
     float[][] point1_coords_3D=dot(MTr_plane_to_3D, point1_coords);
     //printMatrix(point1_coords_3D);
@@ -94,7 +94,7 @@ void mouseCheck(){
     
     
     //коэффициент, необходимый дальше
-    float a=(nx*(x-mouse_coords_3D[0][0])+ny*(y-mouse_coords_3D[1][0])+nz*(z-mouse_coords_3D[2][0]))/ (sq(nx)+sq(ny)+sq(nz)); //<>// //<>//
+    float a=(nx*(x-mouse_coords_3D[0][0])+ny*(y-mouse_coords_3D[1][0])+nz*(z-mouse_coords_3D[2][0]))/ (sq(nx)+sq(ny)+sq(nz)); //<>// //<>// //<>//
     //println(a);
     float[][] mouse_coords_3D_3l= {mouse_coords_3D[0], mouse_coords_3D[1], mouse_coords_3D[2]};
     //ближайшая к концу манипулятора точка, лажащая на прямой через точку мышки перпендикулярно плоскости экрана

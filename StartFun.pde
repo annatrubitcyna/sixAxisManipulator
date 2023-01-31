@@ -7,6 +7,8 @@ void start_angles(float t1, float t2, float t3, float t4, float t5, float t6){
     angles[5]=t6;
     
     float[][][] Ta=getT(angles[0], angles[1], angles[2], angles[3], angles[4], angles[5]);
+    Ta=straightTwist();
+
     R=getR(Ta[5]);
     float[][] coords=straightTransferCoord(angles[0], angles[1], angles[2], Ta); 
     
