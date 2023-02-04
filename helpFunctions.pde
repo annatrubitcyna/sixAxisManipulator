@@ -26,3 +26,32 @@ float norm_vect(float[][] vect){
   }
   return sqrt(ans);
 }
+
+
+int find(String str, String sub){
+  for(int i=0;i<str.length();  i++){
+    if(str.charAt(i)==sub.charAt(0)){
+      boolean flag=true;
+      for(int j=0; j<sub.length(); j++){
+        if (str.charAt(i+j)!=sub.charAt(j)) {
+          flag=false;
+          break;
+        }
+      }
+      if(flag){
+        return i;
+      }
+    }
+  }
+  return -1;
+}
+
+
+boolean startswith(String str, String sub){
+  for(int j=0; j<sub.length(); j++){
+    if (str.charAt(j)!=sub.charAt(j)) {
+      return false;
+    }
+  }
+  return true;
+}

@@ -96,15 +96,19 @@ void printText(){
   printAngle("Th5", "d f", 5);
   printAngle("Th6", "g h", 6);
   
-  textSize(30);
-  text("n   start position", startX-3*textSize/2, startY+textSize*1.2*6);
-  text("j   mouse checking", startX-3*textSize/2, startY+textSize*1.15*7);
-  if(mouseCheck) text("on", startX-3*textSize/2+20*textSize/2, startY+textSize*1.15*7);
-  else text("off", startX-3*textSize/2+20*textSize/2, startY+textSize*1.15*7);
-  text("i   go with speed", startX-3*textSize/2, startY+textSize*1.1*8);
-  
-  
   startX=400;
+  startY=700;
+  
+  textSize(30);
+  text("n   start position", startX, startY);
+  text("j   mouse checking", startX, startY+textSize*1);
+  if(mouseCheck) text("on", startX+20*textSize/2, startY+textSize*1);
+  else text("off", startX+20*textSize/2, startY+textSize*1);
+  text("i   go with speed grip", startX, startY+textSize*2);
+  text("k  go with speed grip Twist", startX, startY+textSize*3);
+  text("b  go by gcodes", startX, startY+textSize*4);
+  
+  startX=100;
   startY=800;
   textSize=40;
   

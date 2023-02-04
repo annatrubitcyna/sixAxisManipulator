@@ -12,12 +12,12 @@ float[][][] getUnitTwists(){
   return UnitTwists;
 }
 float[][] getExpWt(float[][] wt){
-  float[][] w={{-wt[1][2]},{wt[0][2]},{-wt[0][1]}}; //<>//
+  float[][] w={{-wt[1][2]},{wt[0][2]},{-wt[0][1]}};
   float theta_w=norm_vect(w);
   if(round(theta_w, 5)!=0){ 
     wt=dotL(wt, 1/theta_w);
-  } //<>//
-  float[][] ExpWt= addM(eye(3), dotL(wt, sin(theta_w))); //<>//
+  }
+  float[][] ExpWt= addM(eye(3), dotL(wt, sin(theta_w)));
   float[][] wtsq=dot(wt, wt);
   ExpWt= addM(ExpWt, dotL(wtsq, 1-cos(theta_w)));
   return ExpWt;
@@ -34,7 +34,7 @@ float[][] getExpWt(float[][] wt){
 
 
 float[][] getExpTwist(float[][] Twist){
-  float[][] wt=blockOfMatrix(Twist, 0,0,2,2); //<>// //<>//
+  float[][] wt=blockOfMatrix(Twist, 0,0,2,2);
   float[][] v=blockOfMatrix(Twist, 0,3,2,3);
   float[][] w={{-wt[1][2]},{wt[0][2]},{-wt[0][1]}};
   //printMatrix(wt);
@@ -120,7 +120,7 @@ float[][] normalizeTwist(float[][] Twist){
 }
 
 float[][] getTwistfromMatrix(float[][]  TwistM){
-  float[][] wt=blockOfMatrix(TwistM, 0,0,2,2); //<>//
+  float[][] wt=blockOfMatrix(TwistM, 0,0,2,2);
   float[][] v=blockOfMatrix(TwistM, 0,3,2,3);
   float[][] w={{-wt[1][2]},{wt[0][2]},{-wt[0][1]}};
   float[][] Twist={{w[0][0]},{w[1][0]},{w[2][0]},{v[0][0]},{v[1][0]},{v[2][0]}};
@@ -130,7 +130,7 @@ float[][] getTwistfromMatrix(float[][]  TwistM){
 
 
 float[][][] straightTwist(){
-  float[][][] UnitTwists=getUnitTwists(); //<>//
+  float[][][] UnitTwists=getUnitTwists();
   float[][][] Ht0=getHt0();
   float[][][] expMul=new float[6][4][4];
   //float[][] wt={{0, -1,0},{1,0,0}, {0,0,0}};
@@ -145,7 +145,7 @@ float[][][] straightTwist(){
       ExpTwist=getExpTwist(dotL(UnitTwist, angles[i]));
       expMul[i]=ExpTwist;
       H[i]=dot(ExpTwist, Ht0[i]);
-    } //<>//
+    }
     else{
       //float[][] TwistI0=dot(H[i-1], dot(UnitTwist, inverse(H[i-1])));
       //float[][] UnitTwistI0=normalizeTwist(TwistI0);
@@ -155,7 +155,7 @@ float[][][] straightTwist(){
       expMul[i]=dot(expMul[i-1], ExpTwist);
       H[i]=dot(expMul[i], Ht0[i]);
     }
-    print(i); printMatrix(H[i]);
+    //print(i); printMatrix(H[i]);
   }
   return H;
 }

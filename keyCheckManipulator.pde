@@ -75,7 +75,10 @@ void keyCheck(){
         //goWithSpeed();
         goWithSpeedGripTwist();
       }
-      changeAngles=true;
+      if(key=='b' | key=='и'){  
+        goByGcodes();
+      }
+      changeAngles=true; ///?????????????????вопрос по поводу последних 3х
     }
   }
 }

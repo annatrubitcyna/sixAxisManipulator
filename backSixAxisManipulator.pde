@@ -127,7 +127,7 @@ float[] orientationBackwardsTransfer(float t1, float t2, float t3, float[][] R)
 
 float[] backwardTransfer(float x, float y, float z, float[][] R)
 {
-  //+- не косячная запись p40=p60-d6*R60*[0; 0;1] //<>// //<>// //<>// //<>//
+  //+- не косячная запись p40=p60-d6*R60*[0; 0;1] //<>// //<>// //<>// //<>// //<>//
   float[] d = {0, l[1], 0, 0, l[3], 0, l[4]};
   float[][] k={{0}, {0}, {1}};
   float[][] p46=dotL(dot(R, k), d[6]);

@@ -1,8 +1,12 @@
+BufferedReader gcodeReader;
+
 void setup() {
   size(1600, 900, P3D);
   mesh=(TriangleMesh)new STLReader().loadBinary(sketchPath("BaseBot.stl"),STLReader.TRIANGLEMESH);
   //mesh=(TriangleMesh)new STLReader().loadBinary(sketchPath("mesh-flipped.stl"),STLReader.TRIANGLEMESH).flipYAxis();
   gfx=new ToxiclibsSupport(this);
+  
+  gcodeReader = createReader("AbsoluteCube1.gcode");
 }
 
 void draw() 
