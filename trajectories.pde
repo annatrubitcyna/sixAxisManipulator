@@ -56,7 +56,7 @@ void goWithSpeedGripTwist(){
   float[][][] Ta=getT(angles[0], angles[1], angles[2], angles[3], angles[4], angles[5]);
   float[][] theta_s=backSpeedTransferTwist(grip_s);
   float[] angles_s=angles;
-  if(!singularity & exeption=="OK"){
+  if(!singularity & exeption.equals("OK")){
     for( int i=0;i<6;i++){
       angles_s[i]=an(angles[i]+theta_s[i][0]);
     }
@@ -75,12 +75,12 @@ void goWithSpeedGripTwist(){
 }
 
 void goWithSpeedGripTwist(float[][] grip_s){
-  //float[][] grip_s={{0}, {0},{0},{-1},{-1},{0}}; //w(x)=-1
+  //float[][] grip_s={{0}, {0},{0},{-1},{-1},{0}}; //w(x)=-1 //<>//
   //grip_s=dotL(grip_s, 0.01);
   float[][][] Ta=getT(angles[0], angles[1], angles[2], angles[3], angles[4], angles[5]);
   float[][] theta_s=backSpeedTransferTwist(grip_s);
   float[] angles_s=angles;
-  if(!singularity & exeption=="OK"){
+  if(!singularity & exeption.equals("OK")){
     for( int i=0;i<6;i++){
       angles_s[i]=an(angles[i]+theta_s[i][0]);
     }
@@ -100,5 +100,18 @@ void goWithSpeedGripTwist(float[][] grip_s){
 
 
 void goWithSpeedPoinToPoint(float[] start_point, float[] next_point, float speed){
+  x=start_point[0]; //<>//
+  y=start_point[1];
+  z=start_point[2];
+  float[][] mov_vect= subM(transpose_row_to_column(next_point), transpose_row_to_column(start_point));
+  speed=speed/100;
+  float kx=0;   if(mov_vect[0][0]!=0) kx=norm_vect(mov_vect)/mov_vect[0][0];
+  float ky=0;   if(mov_vect[1][0]!=0) ky=norm_vect(mov_vect)/mov_vect[1][0];
+  float kz=0;   if(mov_vect[2][0]!=0) kz=norm_vect(mov_vect)/mov_vect[2][0];
+  float[][] velocity={{0}, {0},{0},{speed*kx},{speed*ky},{speed*kz}};
   
+  while(abs(x-next_point[0])>0.1){
+    goWithSpeedGripTwist(velocity);
+    //drawManipulator();
+  }
 }
