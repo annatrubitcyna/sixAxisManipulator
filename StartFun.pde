@@ -59,6 +59,6 @@ float[][] getRfromSixOrCoordinates(float ax1, float ay1, float ax2){
 
 void start_coords(float x, float y, float z, float[][] R){
   angles=backwardTransfer(x, y, z, R);
-  println("!!!", angles[0], angles[1], angles[2], angles[3], angles[4], angles[5]);
+  //println("!!!", angles[0], angles[1], angles[2], angles[3], angles[4], angles[5]);
   start_angles(angles[0], angles[1], angles[2], angles[3], angles[4], angles[5]);
 }

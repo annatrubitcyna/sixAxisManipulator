@@ -99,7 +99,8 @@ void goWithSpeedPoinToPoint(float[] start_point, float[] next_point, float speed
   float kz=0;   if(mov_vect[2][0]!=0) kz=mov_v_n/mov_vect[2][0];
   float[][] velocity={{0}, {0},{0},{speed*kx},{speed*ky},{speed*kz}};
   
-  t_m=mov_v_n/speed;
+  if(speed!=0) t_m=mov_v_n/speed;
+  else t_m=0.1;
   println(t_m);
   float[][] theta_s=backSpeedTransferTwist(velocity);
   

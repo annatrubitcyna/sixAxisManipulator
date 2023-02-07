@@ -48,6 +48,12 @@ boolean mouseCheck=false;
 
 int caseM=0;
 ArrayList<float[]> workspace;
+boolean flag_go_by_gcode;
+float[] start_point_gcode;
+float[] next_point_gcode;
+float pr_time=0;
+float[][] theta_s_gcode;
+int i_gcode=0;
 
 void drawManipulator()
 {
@@ -69,7 +75,7 @@ void drawManipulator()
   clear();
   
   //draw_workspace();  
-  trajectory=getTrajectoryByGcode(); //<>//
+  //trajectory=getTrajectoryByGcode(); //<>//
 
   
   //background(255);
@@ -121,7 +127,6 @@ void drawManipulator()
       first=false;
     }
   }
- 
   
   
   
@@ -183,6 +188,42 @@ void drawManipulator()
   keyCheck();
   float[][] centre_of_gr=centreOfGravity(0,1,1,1,1,5);
   //printMatrix(centre_of_gr);
+  
+  if(flag_go_by_gcode & flag_line){
+    float time_one_draw=millis()-pr_time;
+    //println(time_one_draw);
+    
+    time_m_d+=time_one_draw; // одна отрисовка
+    pr_time=millis();
+    //двигаемся
+    if(time_m_d<t_m){
+        for( int i=0;i<6;i++){
+           angles[i]=an(angles[i]+theta_s_gcode[i][0]*0.001*time_one_draw);
+        }
+    changeAngles=true;
+    }
+    //если дошли считываем следующую точку и все параметры для нее
+    else{
+      i_gcode+=1;
+      //println(i_gcode);
+      start_point_gcode=next_point_gcode;
+      next_point_gcode=getTrajectoryByGcode();
+      
+      x=start_point_gcode[0];
+      y=start_point_gcode[1];
+      z=start_point_gcode[2];
+      float[][] mov_vect= subM(transpose_row_to_column(next_point_gcode), transpose_row_to_column(start_point_gcode));
+      float mov_v_n=norm_vect(mov_vect);
+      float speed=start_point_gcode[4]/60 /10/100; //пикселей в секунду
+      float kx=0;   if(mov_vect[0][0]!=0) kx=mov_v_n/mov_vect[0][0];
+      float ky=0;   if(mov_vect[1][0]!=0) ky=mov_v_n/mov_vect[1][0];
+      float kz=0;   if(mov_vect[2][0]!=0) kz=mov_v_n/mov_vect[2][0];
+      float[][] velocity={{0}, {0},{0},{speed*kx},{speed*ky},{speed*kz}};
+      //время к которому должен доехать (в секундах) 
+      if(speed!=0) t_m=millis()+mov_v_n/speed;
+      theta_s_gcode=backSpeedTransferTwist(velocity);
+    }
+  }
   
   pushMatrix();
   translate (centre_of_gr[0][0],centre_of_gr[1][0], centre_of_gr[2][0]);

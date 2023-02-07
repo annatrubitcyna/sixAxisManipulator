@@ -1,41 +1,17 @@
-int i_gcode=0;
-int i_gcode_l; //=getTrajectoryByGcode().length-1;
+boolean flag_line=true;
 
-void goByGcodes(){
-  
-  
-  //float[][] trajectory=getTrajectoryByGcode();
-  float table_x=50; //<>//
-  float table_y=50;
-  float table_z=50;
-  R[0][0]= 1;R[0][1]= 0; R[0][2]= 0;
-  R[1][0]= 0; R[1][1]= -1; R[1][2]= 0;
-  R[2][0]= 0; R[2][1]= 0; R[2][2]= -1;
-  start_coords(table_x, table_y, table_z, R);
-  //drawManipulator();
-  float[][] table_coords={{table_x, table_y, table_z}};
-  i_gcode_l=trajectory.length-1;
-  if (time_m_d>=t_m){
-      i_gcode+=1;
-      time_m_d=0;
-  }
-  int i=i_gcode;
-  print(i);
-  float[][] start_point={{trajectory[i][0], trajectory[i][1], trajectory[i][2]}};
-  float[][] next_point={{trajectory[i+1][0], trajectory[i+1][1], trajectory[i+1][2]}};
-  start_point=addM(dotL(start_point, 0.1), table_coords);
-  next_point=addM(dotL(next_point, 0.1), table_coords);
-  
-  float speed=trajectory[i][4];
-  goWithSpeedPoinToPoint(start_point[0], next_point[0], speed);  
-}
+float[] pr_point={0, 0, 0};
+float table_x=50;
+float table_y=50;
+float table_z=50;
+float[][] table_coords={{table_x, table_y, table_z}};
+boolean start_print=true; //<>//
 
-float[][] getTrajectoryByGcode(){
-  ArrayList<float[]> trajectory =new ArrayList<float[]>();
+float[] getTrajectoryByGcode(){
+  float[] new_point={0, 0, 0, 0, 0};
   float x_g=0; float y_g=0; float z_g=0; float e_g=0; float f_g=0;
-  boolean flag_line=true;
-  String line;
-  while(flag_line){
+  String line;  
+  if(flag_line){
     try {
       line = gcodeReader.readLine();
     } catch (IOException e) {
@@ -46,7 +22,7 @@ float[][] getTrajectoryByGcode(){
     if (line == null) {
       // Stop reading because of an error or file is empty
       noLoop();
-      flag_line=false;
+      flag_line=false; //<>//
     } else {
       String[] lines = split(line, TAB);
       for(int j=0; j<lines.length; j++){
@@ -106,14 +82,18 @@ float[][] getTrajectoryByGcode(){
               }
               f_g = float(f_gs);
           }
-          float[] new_point={x_g, y_g, z_g, e_g, f_g};
-          trajectory.add(new_point);
-          //print(new_point[0]);
+          float[] new_point_r={x_g, y_g, z_g, e_g, f_g};
+          new_point=new_point_r;
         }
       }
     }
   }
-  float[][] trajectory_array=trajectory.toArray(new float[trajectory.size()][5]); //<>//
-  printMatrix(trajectory_array);
-  return trajectory_array;
+  return new_point;
 }
+//  else   time_m_d=0;
+//  if(start_print){
+//    time_m_d=1;
+//    start_print=false;
+//  }
+//  goWithSpeedPoinToPoint(start_point[0], next_point[0], f_g);
+//}
