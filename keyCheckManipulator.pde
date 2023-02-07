@@ -75,10 +75,13 @@ void keyCheck(){
         //goWithSpeed();
         goWithSpeedGripTwist();
       }
-      if(key=='b' | key=='и'){  
-        goByGcodes();
+      //changeAngles=true; ///?????????????????вопрос по поводу последних 3х
+      if(key=='b' | key=='и'){ 
+        i_gcode_l=trajectory.length-1;
+        if(i_gcode<i_gcode_l){
+          goByGcodes(); //<>//
+        }
       }
-      changeAngles=true; ///?????????????????вопрос по поводу последних 3х
     }
   }
 }
@@ -87,4 +90,9 @@ void keyReleased(){
   if(key=='j' | key=='о'){ 
         mouseCheck=!mouseCheck;
       }
+  //if(key=='b' | key=='и'){ 
+  //  if(i_gcode<i_gcode_l){
+  //    goByGcodes();
+  //  }
+  //}
 }

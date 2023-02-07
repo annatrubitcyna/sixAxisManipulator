@@ -68,7 +68,9 @@ void drawManipulator()
   
   clear();
   
-  //draw_workspace();
+  //draw_workspace();  
+  trajectory=getTrajectoryByGcode(); //<>//
+
   
   //background(255);
   stroke(255, 0, 0);

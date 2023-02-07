@@ -1,4 +1,5 @@
 BufferedReader gcodeReader;
+float[][] trajectory;
 
 void setup() {
   size(1600, 900, P3D);
@@ -7,7 +8,6 @@ void setup() {
   gfx=new ToxiclibsSupport(this);
   
   gcodeReader = createReader("AbsoluteCube1.gcode");
-  
   //check_workspace_to_print();
   //float[][] workspace_l=workspace.toArray(new float[workspace.size()][3]);
   //printMatrix(workspace_l);
